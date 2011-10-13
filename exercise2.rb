@@ -5,6 +5,7 @@ class CssCompressor
 		@file_name = fn
 		@output_file = opf
 	end	
+
 	## Omit the paranthesis
 	def compressStyle
 		begin
@@ -56,20 +57,16 @@ print "Enter the input file name : "
 input_file = gets.chomp
 print "Enter the output file : "
 output_file = gets.chomp
-if(input_file != "" && output_file != "")
+
+## Check out this implementation
+
+unless input_file.empty? && output_file.empty?
 	if(FileTest.exists?(input_file)) #checkes whether the input and the output file exists
 		if(FileTest.exists?(output_file))
 			print "File named #{@output_file} already exist, do you want to overwrite (y) ? "
-			prompt = gets.chomp
-			if(prompt.to_s.downcase == 'y')
-				c = CssCompressor.new(input_file, output_file) 
-				c.compressStyle
-			else
-				puts "\nNothing Effected\n\n"
-			end
+			gets.chomp.to_s.downcase == 'y'	?	CssCompressor.new(input_file, output_file).compressStyle : (puts "\nNothing Effected\n\n")
 		else
-			c = CssCompressor.new(input_file, output_file) 
-			c.compressStyle
+			CssCompressor.new(input_file, output_file).compressStyle
 		end	
 	else
 		puts "\n#{input_file} - Does not exists\n\n"
@@ -77,4 +74,28 @@ if(input_file != "" && output_file != "")
 else
 	puts "Filenames can not be empty"	
 end
+
+
+
+# if(input_file != "" && output_file != "")
+#   if(FileTest.exists?(input_file)) #checkes whether the input and the output file exists
+#     if(FileTest.exists?(output_file))
+#       print "File named #{@output_file} already exist, do you want to overwrite (y) ? "
+#       prompt = gets.chomp
+#       if(prompt.to_s.downcase == 'y')
+#         c = CssCompressor.new(input_file, output_file) 
+#         c.compressStyle
+#       else
+#         puts "\nNothing Effected\n\n"
+#       end
+#     else
+#       c = CssCompressor.new(input_file, output_file) 
+#       c.compressStyle
+#     end 
+#   else
+#     puts "\n#{input_file} - Does not exists\n\n"
+#   end   
+# else
+#   puts "Filenames can not be empty" 
+# end
 
