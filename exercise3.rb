@@ -1,3 +1,7 @@
+## GENERAL COMMENTS - 
+# 1. Schedule meeting next day if the user specified day is a holiday, or the user specified time is past working hours of the business center
+
+
 =begin
 Day Scheduling -
 We have schedule appointments for a Business Center.
@@ -21,31 +25,48 @@ Implement it using object oriented principles
 
 
 require 'date'
+
 class BusinessCenterHours
 	def initialize(s, e)
 		@start_everyday = s
 		@end_everyday = e
-		@diff_time = Array.new
+		@diff_time = []
+		
 		@no_bissn_days = [:sun]
 		@meetings = Array.new
+    
+    ## COMMENT - Common to every object. Make this class variable.
 		@weekdays = [:sun, :mon, :tue, :wed, :thr, :fri, :sat]
 		@months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 	end
+	
 	def update(day, s_time, e_time)
 		u_day = [day, s_time, e_time]
 		@diff_time[@diff_time.length] = u_day
+		p @diff_time
 	end	
+	
 	def closed(*args)
 		args.each do |day|
 			@no_bissn_days[@no_bissn_days.length] = day
 		end	
+		p @no_bissn_days
 	end
+	
 	def calculate_deadline(duration, day)
 		meeting_possible = 1
+		
+		## COMMENT - Use DateTime.strptime
 		mon_day_year = day.split(" ")
+		
 		m_date = mon_day_year[0] + " " + mon_day_year[1] + " " + mon_day_year[2]
+		p m_date
 		re = /\,/
+		
 		mon_day_year[1] = mon_day_year[1].sub(re, "")
+		p mon_day_year[1]
+		
+		
 		i = 0
 		while i < 12
 			if(mon_day_year[0] == @months[i])
@@ -53,17 +74,24 @@ class BusinessCenterHours
 			end
 			i += 1
 		end
+		
+		
 		m_month = i+1
 		m_day = mon_day_year[1].to_i
 		m_year = mon_day_year[2].to_i		
+		
 		meeting_date = Time.new(m_year, m_month, m_day)
+		
+		
 		m_day_name = @weekdays[meeting_date.wday]
+		
 		@no_bissn_days.each do |hld| #checks if the meeting date is not a holiday
 			if(m_day_name == hld || m_date == hld)
 				puts "#{day} is a holiday, We can not schedule meeting in a Holiday"
 				meeting_possible = 0
 			end	
 		end
+		
 		m_day_start_time = @start_everyday.to_i
 		m_day_end_time = @end_everyday.to_i				
 		m_time = mon_day_year[3].to_i
@@ -77,12 +105,17 @@ class BusinessCenterHours
 			puts "On #{m_date} timing of the office is only from #{m_day_start_time} to #{m_day_end_time}"
 			meeting_possible = 0
 		end
+		
+		## COMMENT - Use DateTime's inbuilt functions to convert 12 hour clock to 24 hour clock, comparing times
+		
 		if(meeting_possible == 1) #executes only if the meeting is possible
 			day_end_hour = m_day_end_time/100 #variables which extracts the hours and minutes from the 24 hour time format
 			day_end_min = m_day_end_time - (day_end_hour*100)
 			m_start_hour = m_time/100
 			m_start_min = m_time - (m_start_hour*100)	
 			d_hour = duration/(60.0*60.0)
+			
+			## COMMENT - Use in-built Ruby fuctions for float, integer manipulation
 			d_min_ratio = d_hour - d_hour.to_i
 			d_hour = d_hour.to_i
 			d_min = (d_min_ratio*60).to_i
@@ -119,10 +152,13 @@ class BusinessCenterHours
 							h = true
 						end	
 					end
+					
+					#### COMMENT - Can be written as unless h
 					if(h == false)
 						break
 					end
 				end
+				
 				m_day_start_time = @start_everyday.to_i
 				m_day_end_time = @end_everyday.to_i				
 				@diff_time.each do |dt| #finds the starting and end time of the day
@@ -145,6 +181,6 @@ h = BusinessCenterHours.new("0900", "1500")
 h.update "Jan 4, 2011", "0800", "1300"
 h.update :sat, "1000", "1700"
 h.closed :wed, :thr, "Dec 25, 2011"
-h.closed "Dec 28, 2011"
+# h.closed "Dec 28, 2011"
 h.calculate_deadline(7*60*60, "Dec 24, 2011 1200")
 
