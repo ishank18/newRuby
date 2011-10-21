@@ -146,5 +146,5 @@ h.update "Jan 4, 2011", "0800", "1300"
 h.update :sat, "1000", "1700"
 h.closed :wed, :thr, "Dec 25, 2011"
 h.closed "Dec 28, 2011"
-h.calculate_deadline(7*60*60, "Dec 24, 2011 1200")
+h.calculate_deadline(7*60*60, "Dec 24, 2011 1845")
 
