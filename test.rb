@@ -1,3 +1,3 @@
-require 'date'
-now = Time.now + (20*24*60*60)
-p now
+val = 9.756
+puts sprintf("%.2f", val)
+
