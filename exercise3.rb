@@ -54,7 +54,6 @@ class BusinessCenterHours
 				meeting_date = meeting_date + 1
 			end	
 		end
-		p meeting_date.strftime("%b %d, 20%y")
 		m_day_start_time = @start_everyday.to_i
 		m_day_end_time = @end_everyday.to_i				
 		m_time = meeting_date.strftime("%H%M").to_i
