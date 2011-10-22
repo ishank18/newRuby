@@ -1,3 +1,3 @@
-val = 9.756
-puts sprintf("%.2f", val)
+a = [1, 8, 9,4, 14, 6]
+p a.sort.reverse
 
