@@ -1,16 +1,18 @@
 require 'date'
 class TimeAverage
-	@@timeArray = []
+	def initialize
+		@timeArray = []
+	end	
 	def addTimeToArray(t)
 		puts "Time = "+t
 		time = DateTime.strptime(t, "%H%M")
-		@@timeArray[@@timeArray.length] = time
+		@timeArray[@timeArray.length] = time
 	end
 	def calculateAverage
 		minSum = 0
 		hourSum = 0
-		len = @@timeArray.length.to_f
-		@@timeArray.each do |time|
+		len = @timeArray.length.to_f
+		@timeArray.each do |time|
 			minSum += time.strftime("%M").to_i
 			hourSum += time.strftime("%H").to_i
 		end
