@@ -1,0 +1,58 @@
+<itemlist>
+	<item id="1">
+		<unit>USD</unit>
+		<price>39.43</price>
+	</item>
+	<item id="2">
+		<unit>CAD</unit>
+		<price>20</price>
+	</item>
+	<item id="3">
+		<unit>INR</unit>
+		<price>450</price>
+	</item>
+	<item id="4">
+		<unit>USD</unit>
+		<price>10</price>
+	</item>
+	<item id="5">
+		<unit>CAD</unit>
+		<price>40</price>
+	</item>
+	<item id="6">
+		<unit>INR</unit>
+		<price>200</price>
+	</item>
+	<item id="7">
+		<unit>CAD</unit>
+		<price>10</price>
+	</item>
+	<item id="8">
+		<unit>USD</unit>
+		<price>15</price>
+	</item>
+	<item id="9">
+		<unit>USD</unit>
+		<price>20</price>
+	</item>
+	<item id="10">
+		<unit>CAD</unit>
+		<price>12</price>
+	</item>
+	<item id="11">
+		<unit>INR</unit>
+		<price>2000</price>
+	</item>
+	<item id="12">
+		<unit>CAD</unit>
+		<price>29</price>
+	</item>
+	<item id="13">
+		<unit>USD</unit>
+		<price>70</price>
+	</item>
+	<item id="14">
+		<unit>AUD</unit>
+		<price>32</price>
+	</item>
+</itemlist>	

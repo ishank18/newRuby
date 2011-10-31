@@ -1,0 +1,6 @@
+{
+"CAD2USD" : { "num" : "CAD", "den" : "USD", "ratio" : 0.4127 },
+"INR2USD" : { "num" : "USD", "den" : "INR", "ratio" : 45 },
+"AUD2INR" : { "num" : "AUD", "den" : "INR", "ratio" : 38 }
+}
+
