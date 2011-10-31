@@ -1,3 +1,5 @@
+##### COMMENT - Please dont use class variables unless required!!!! 
+
 =begin
 Shopping Cart
 
@@ -15,27 +17,33 @@ Implement it using object oriented principles
 class ShoppingCart
 	@@price_table = Hash.new
 	@@order = Hash.new
+
 	def initialize(n)
 		@num_item = n
 	end
+
 	def setUnitPrice(item_code, p)   #Set Initial price of a item
 			price_of_item = Hash.new
 			price_of_item[1] = p
 			@@price_table[item_code] =  price_of_item
 	end
+
 	def setOffer(item_code, q, p)  #Set offer in any existing item
 		offer = @@price_table[item_code];
 		offer[q] = p
 		@@price_table[item_code] = offer
 		
 	end
+
 	def setOrder(item_code, q)  #Sets order of item
+		## Dont need to check '!= nil' 
 		if(@@order[item_code] != nil)
 			@@order[item_code] = @@order[item_code] + q
 		else
 			@@order[item_code] = q
 		end	
 	end
+
 	def calculatePrice   # Calculates the Amount
 		puts "\nPrice Details : #{@@price_table}"
 		puts "Order Details : #{@@order}\n\n"
@@ -46,6 +54,7 @@ class ShoppingCart
 			item_qnty_price = @@price_table[item_code]  # Stores the unit and offer price in array
 			item_qnty = item_qnty_price.keys.sort.reverse  # Sorts the offer in descending order
 			i = 0
+			#### COMMENT - Iterate over array - not index
 			while item_quantity > 0 && i < item_qnty.length
 				while(item_quantity >= item_qnty[i])
 					item_quantity -= item_qnty[i]
