@@ -1,3 +1,6 @@
-a = [1, 8, 9,4, 14, 6]
-p a.sort.reverse
-
+def ishank
+	var = 5
+	binding
+end
+r = ishank	
+eval "puts var", r
