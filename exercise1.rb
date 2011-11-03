@@ -32,16 +32,17 @@ class ShoppingCart
 		offer = @@price_table[item_code];
 		offer[q] = p
 		@@price_table[item_code] = offer
-		
 	end
 
 	def setOrder(item_code, q)  #Sets order of item
 		## Dont need to check '!= nil' 
-		if(@@order[item_code] != nil)
-			@@order[item_code] = @@order[item_code] + q
-		else
-			@@order[item_code] = q
-		end	
+		@@order[item_code] = @@order[item_code] ? (@@order[item_code] + q) : q
+
+    # if(@@order[item_code] != nil)
+    #   @@order[item_code] = @@order[item_code] + q
+    # else
+    #   @@order[item_code] = q
+    # end 
 	end
 
 	def calculatePrice   # Calculates the Amount
@@ -50,10 +51,11 @@ class ShoppingCart
 		order_item_codes = @@order.keys
 		amount = 0
 		order_item_codes.each do |item_code|
-			item_quantity = @@order[item_code]  # Quantity of items in Order
+			item_quantity = @@order[item_code]          # Quantity of items in Order
 			item_qnty_price = @@price_table[item_code]  # Stores the unit and offer price in array
 			item_qnty = item_qnty_price.keys.sort.reverse  # Sorts the offer in descending order
 			i = 0
+			
 			#### COMMENT - Iterate over array - not index
 			while item_quantity > 0 && i < item_qnty.length
 				while(item_quantity >= item_qnty[i])
