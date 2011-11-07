@@ -2,4 +2,4 @@
 def calculate a, sign, b
 	eval "a #{sign} b"
 end
-puts calculate 3, :+, 2
+puts calculate 3, :+, 2u

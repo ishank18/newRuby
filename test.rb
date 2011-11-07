@@ -1,6 +1,7 @@
-def ishank
-	var = 5
-	binding
+class Ishank
+define_method("ishank") do
+	puts "Method called!"
 end
-r = ishank	
-eval "puts var", r
+end
+i = Ishank.new
+i.ishank
