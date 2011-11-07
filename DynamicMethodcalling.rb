@@ -2,13 +2,17 @@ class StringSub < String
 	def initialize(input)
 		@input = input
 	end	
+	
+	## COMMENT - Just write @input.downcase == @input.reverse.downcase
 	def pallindrome?
-		(@input.downcase == @input.reverse.downcase)? true: false
+		(@input.downcase == @input.reverse.downcase) ? true: false
 	end
+	
 	def say_hello
 		"Hi from #{@input}"
 	end	
 end
+
 print "Enter the String : "
 input = gets.chomp
 print "Enter the name of method : "
